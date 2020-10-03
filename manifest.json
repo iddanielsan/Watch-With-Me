@@ -2,12 +2,32 @@
   "manifest_version": 2,
   "name": "Watch With Me",
   "version": "0.1",
+  "icons": {
+  	"16": "assets/images/icon16.png",
+  	"48": "assets/images/icon48.png",
+  	"128": "assets/images/icon128.png"
+  },
+  "permissions": [
+  	"tabCapture",
+  	"debugger",
+  	"pageCapture",
+  	"contextMenus",
+  	"activeTab",
+    "declarativeContent",
+    "storage"
+  ],
+  "background": {
+  	"scripts": ["background.js","assets/js/polyfill.min.js", "assets/js/adonis-ws.js"],
+  	"persistent": true
+  },
   "content_scripts": [
-  	{
-  		"matches": [
-  			"https://www.youtube.com/*"
-  		],
-  		"js": ["service.js"]
-  	}
-  ]
+    {
+      "matches": ["<all_urls>"],
+      "js" : ["assets/js/polyfill.min.js", "assets/js/adonis-ws.js", "service.js"]
+    }
+  ],
+  "browser_action": {
+  	"default_popup": "views/popup/login.html",
+  	"default_icon": "assets/images/icon48.png"
+  }
 }

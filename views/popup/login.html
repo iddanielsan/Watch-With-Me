@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Play With Me</title>
+  <meta charset="UTF-8">
+  <style>
+    #global {
+      width: 500px;
+    }
+    .logo img {
+    max-width: 111px;
+}
+
+.logo {
+    text-align: center;
+}
+
+.container {
+    padding: 46px;
+}
+
+.forms-container input {
+    width: 72%;
+    padding: 8px;
+    height: 25px;
+    border: 1px solid rgb(37 37 37 / 12%);
+    border-radius: 7px;
+    outline: none;
+}
+
+.forms-container {
+    text-align: center;
+    margin-top: 38px;
+}
+
+.forms-container button {
+    width: 77%;
+    height: 48px;
+    border: none;
+    border-radius: 6px;
+    margin-top: 23px;
+    background: #6c70f1;
+    color: #FFFFFF;
+    outline: none;
+    cursor: pointer;
+}
+div#code {
+    text-align: center;
+}
+
+div#code h1 {letter-spacing: 1px;color: #4a52d7;}
+
+div#code {
+    padding: 35px;
+    background: rgb(243 243 243);
+    border-radius: 13px;
+    margin-top: 25px;
+}
+  </style>
+</head>
+<body>
+<div id="global">
+  <div class="container">
+    <div class="logo">
+      <img src="../../assets/images/icon128.png">
+    </div>
+
+    <div id="form" class="forms-container">
+      <input id="create_room_username_input" type="text" placeholder="Usuário">
+      <button id="create_room_button">Criar uma sala</button>
+    </div>
+
+    <div id="enter_room_form" class="forms-container">
+      <input id="enter_room_username_input" type="text" placeholder="Usuário">
+      <input id="enter_room_code_input" type="text" placeholder="Código da sala">
+      <button id="enter_room_button">Entrar</button>
+    </div>
+
+    <div style="display:none;" id="code">
+      <h1 id="code_text"></h1>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../popup.js"></script>
+</body>
+</html>
