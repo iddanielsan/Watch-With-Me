@@ -81,18 +81,6 @@ function sendToContentScript(data){
     });
 }
 
-
-chrome.runtime.onInstalled.addListener(function(details) {
-    if (details.reason == "install") {
-    	console.log('created new tab after install');
-    	chrome.tabs.create({
-            'url': "https://www.netflixparty.com/tutorial"
-        }, function() {
-            console.log('created new tab after install');
-        });
-    }
-});
-
 chrome.runtime.onInstalled.addListener(function(details) {
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
         chrome.declarativeContent.onPageChanged.addRules([{
