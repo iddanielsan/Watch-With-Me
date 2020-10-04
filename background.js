@@ -16,10 +16,8 @@ function startSocket(channel, username) {
         const subscription = ws.subscribe(`room:${channel}`);
 
         // Registra eventos
-        subscription.on('room:play', (message) => {
-            console.log('Nova mensagem');
-            //sendToContent(message);
-            sendToContentScript('room:play', message);
+        subscription.on('video_action', (message) => {
+            sendToContentScript(message);
         })
 
         state = {
@@ -43,6 +41,18 @@ function sendPlay(time) {
     })
 }
 
+function sendAction(options){
+    console.log('SendAction: Sending a new event');
+    console.log(options);
+
+    state.wsc.emit('message', {
+        action: options.action,
+        type: options.type,
+        username: state.username,
+        time: options.videoTime
+    })
+}
+
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if(request.action === "connect_socket") {
         chrome.tabs.query({active: true}, function(tabs){
@@ -54,20 +64,20 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         startSocket(request.options.channel, request.options.username);
     }
 
-    if(request.action === "play") {
-        console.log('Ação de play recebida no background');
-
-        if(state.connected) {
-            sendPlay(request.options.currentTime);
-        }
+    if(state.connected){
+        sendAction({
+            action: request.action,
+            type: request.options.type,
+            videoTime: request.options.currentTime
+        });
     }
 })
 
-function sendToContentScript(action, options){
+function sendToContentScript(data){
     console.log('Recebida uma mensagem do servidor');
-    
+
     chrome.tabs.query({active: true}, function(tabs){
-        chrome.tabs.sendMessage(tabID, {action: action, options: options});
+        chrome.tabs.sendMessage(tabID, data);
     });
 }
 
