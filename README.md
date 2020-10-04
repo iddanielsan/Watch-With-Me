@@ -3,4 +3,4 @@ Uma extensão para navegador que utiliza websocket para criar salas onde a repro
 
 
 ## Como instalar?
-Bem, basta ir em Chrome://extensions, ativar o modo desenvolvedor e em seguida carregar a pasta extensão.
+Bem, basta ir em Chrome://extensions, ativar o modo desenvolvedor e em seguida carregar a pasta da extensão.
